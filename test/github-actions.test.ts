@@ -1,17 +1,16 @@
-// import * as cdk from 'aws-cdk-lib';
-// import { Template } from 'aws-cdk-lib/assertions';
-// import * as GithubActions from '../lib/github_actions-stack';
+import * as cdk from "aws-cdk-lib";
+import { Template } from "aws-cdk-lib/assertions";
+import* as GithubActions from "../lib/github_actions-stack";
 
-// example test. To run these tests, uncomment this file along with the
-// example resource in lib/github_actions-stack.ts
-test('SQS Queue Created', () => {
-//   const app = new cdk.App();
-//     // WHEN
-//   const stack = new GithubActions.GithubActionsStack(app, 'MyTestStack');
-//     // THEN
-//   const template = Template.fromStack(stack);
+test("Stack Created", () => {
+    const app = new cdk.App();
+    const stack = new GithubActions.GithubActionsStack(app, "MyTestStack");
+    const template = Template.fromStack(stack);
 
-//   template.hasResourceProperties('AWS::SQS::Queue', {
-//     VisibilityTimeout: 300
-//   });
+    template.hasResourceProperties("AWS::Lambda::Function", {
+        FunctionName: "cdk-lambda",
+        Runtime: "nodejs16x",
+        Handler: "index.handler",
+        MemorySize: 128,
+    });
 });
