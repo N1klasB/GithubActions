@@ -4,7 +4,7 @@ import* as GithubActions from "../lib/github_actions-stack";
 
 test("Stack Created", () => {
     const app = new cdk.App();
-    const stack = new GithubActions.GithubActionsStack(app, "MyTestStack");
+    const stack = new GithubActionsStack(app, "MyTestStack");
     const template = Template.fromStack(stack);
 
     template.hasResourceProperties("AWS::Lambda::Function", {
